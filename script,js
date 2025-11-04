@@ -1,0 +1,228 @@
+// =============================================
+// JavaScript Fundamentals Assignment
+// =============================================
+
+// ============================================================================
+// PART 1: JavaScript Basics - Variables, Conditionals, and User Input
+// ============================================================================
+
+// Variable declarations using different methods
+let userName = "John Doe";          // Using let (can be reassigned)
+const APP_VERSION = "1.0.0";        // Using const (cannot be reassigned)
+var userScore = 0;                  // Using var (function-scoped, older method)
+
+// Function to check age eligibility using conditionals
+function checkAge() {
+    // Get user input from the DOM
+    const ageInput = document.getElementById('userAge');
+    const resultElement = document.getElementById('ageResult');
+    
+    // Convert input to number and validate
+    const age = parseInt(ageInput.value);
+    
+    // Conditional logic to determine eligibility
+    if (isNaN(age)) {
+        resultElement.textContent = "Please enter a valid age!";
+        resultElement.style.color = "red";
+    } else if (age < 0) {
+        resultElement.textContent = "Age cannot be negative!";
+        resultElement.style.color = "red";
+    } else if (age < 13) {
+        resultElement.textContent = "You are a child. Parental guidance recommended.";
+        resultElement.style.color = "orange";
+    } else if (age >= 13 && age < 18) {
+        resultElement.textContent = "You are a teenager. Limited access granted.";
+        resultElement.style.color = "blue";
+    } else if (age >= 18 && age < 65) {
+        resultElement.textContent = "You are an adult. Full access granted!";
+        resultElement.style.color = "green";
+    } else {
+        resultElement.textContent = "You are a senior. Welcome! Special access available.";
+        resultElement.style.color = "purple";
+    }
+}
+
+// ============================================================================
+// PART 2: JavaScript Functions - Reusable Blocks of Logic
+// ============================================================================
+
+// Function 1: Calculate mathematical operations
+function calculate(operation) {
+    const num1 = parseFloat(document.getElementById('num1').value);
+    const num2 = parseFloat(document.getElementById('num2').value);
+    const resultElement = document.getElementById('functionResult');
+    
+    let result;
+    
+    switch(operation) {
+        case 'add':
+            result = addNumbers(num1, num2);
+            resultElement.textContent = `${num1} + ${num2} = ${result}`;
+            break;
+        case 'multiply':
+            result = multiplyNumbers(num1, num2);
+            resultElement.textContent = `${num1} × ${num2} = ${result}`;
+            break;
+        case 'power':
+            result = powerOfNumber(num1, num2);
+            resultElement.textContent = `${num1} ^ ${num2} = ${result}`;
+            break;
+        default:
+            resultElement.textContent = "Invalid operation!";
+    }
+    
+    resultElement.style.color = "green";
+}
+
+// Helper function for addition
+function addNumbers(a, b) {
+    return a + b;
+}
+
+// Helper function for multiplication
+function multiplyNumbers(a, b) {
+    return a * b;
+}
+
+// Helper function for exponentiation
+function powerOfNumber(base, exponent) {
+    return Math.pow(base, exponent);
+}
+
+// Function 2: Format user information
+function formatUserInfo(name, age, isActive = true) {
+    const status = isActive ? "Active" : "Inactive";
+    return `User: ${name}, Age: ${age}, Status: ${status}`;
+}
+
+// ============================================================================
+// PART 3: JavaScript Loops - Repetition and Iteration
+// ============================================================================
+
+// Loop Example 1: Generate multiplication table using for loop
+function generateMultiplicationTable() {
+    const resultsElement = document.getElementById('loopResults');
+    const number = 7; // You can make this dynamic by getting user input
+    let tableHTML = `<h3>Multiplication Table for ${number}:</h3><ul>`;
+    
+    // For loop to generate table rows
+    for (let i = 1; i <= 10; i++) {
+        const result = number * i;
+        tableHTML += `<li>${number} × ${i} = ${result}</li>`;
+    }
+    
+    tableHTML += "</ul>";
+    resultsElement.innerHTML = tableHTML;
+}
+
+// Loop Example 2: Process shopping cart using while loop
+function processShoppingCart() {
+    const resultsElement = document.getElementById('loopResults');
+    const cartItems = [
+        { name: "Laptop", price: 999.99, quantity: 1 },
+        { name: "Mouse", price: 25.50, quantity: 2 },
+        { name: "Keyboard", price: 75.00, quantity: 1 },
+        { name: "Monitor", price: 200.00, quantity: 1 }
+    ];
+    
+    let total = 0;
+    let i = 0;
+    let cartSummary = "<h3>Shopping Cart Summary:</h3><ul>";
+    
+    // While loop to process cart items
+    while (i < cartItems.length) {
+        const item = cartItems[i];
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        cartSummary += `<li>${item.name} - $${item.price} × ${item.quantity} = $${itemTotal.toFixed(2)}</li>`;
+        i++;
+    }
+    
+    cartSummary += `</ul><p><strong>Total: $${total.toFixed(2)}</strong></p>`;
+    resultsElement.innerHTML = cartSummary;
+}
+
+// ============================================================================
+// PART 4: DOM Manipulation - Interactive Web Page
+// ============================================================================
+
+// DOM Interaction 1: Toggle dark/light mode
+document.getElementById('themeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    const themeButton = document.getElementById('themeToggle');
+    if (document.body.classList.contains('dark-mode')) {
+        themeButton.textContent = 'Toggle Light Mode';
+    } else {
+        themeButton.textContent = 'Toggle Dark Mode';
+    }
+});
+
+// DOM Interaction 2: Add dynamic list items
+document.getElementById('addItem').addEventListener('click', function() {
+    const dynamicList = document.getElementById('dynamicList');
+    const newItem = document.createElement('li');
+    const itemNumber = dynamicList.children.length + 1;
+    
+    newItem.textContent = `Dynamic item ${itemNumber} added via JavaScript`;
+    newItem.style.backgroundColor = getRandomColor();
+    dynamicList.appendChild(newItem);
+});
+
+// DOM Interaction 3: Change header text
+document.getElementById('changeText').addEventListener('click', function() {
+    const header = document.querySelector('header h1');
+    const originalText = "JavaScript Fundamentals Assignment";
+    const newText = "DOM Manipulation in Action!";
+    
+    // Toggle between original and new text
+    if (header.textContent === originalText) {
+        header.textContent = newText;
+        header.style.color = "#ff6b6b";
+    } else {
+        header.textContent = originalText;
+        header.style.color = "white";
+    }
+});
+
+// Helper function to generate random colors
+function getRandomColor() {
+    const colors = ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ff99ff', '#99ffff'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// Additional DOM Interaction: Update interaction area
+const interactionArea = document.getElementById('interactionArea');
+interactionArea.addEventListener('mouseenter', function() {
+    this.innerHTML = "<p>Mouse entered the interaction area! DOM events working.</p>";
+});
+
+interactionArea.addEventListener('mouseleave', function() {
+    this.innerHTML = "<p>Mouse left the area. Try other interactions!</p>";
+});
+
+// ============================================================================
+// Initialization when page loads
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("JavaScript Fundamentals Assignment Loaded!");
+    console.log("User:", formatUserInfo(userName, 25, true));
+    
+    // Demonstrate all parts are working
+    console.log("=== PART 1: Variables ===");
+    console.log("User Name:", userName);
+    console.log("App Version:", APP_VERSION);
+    console.log("User Score:", userScore);
+    
+    console.log("=== PART 2: Functions ===");
+    console.log("Addition Test:", addNumbers(5, 3));
+    console.log("Multiplication Test:", multiplyNumbers(5, 3));
+    
+    console.log("=== PART 3: Loops ===");
+    console.log("Loop demonstration ready - check the buttons!");
+    
+    console.log("=== PART 4: DOM ===");
+    console.log("DOM manipulation ready - try the interactive elements!");
+});
