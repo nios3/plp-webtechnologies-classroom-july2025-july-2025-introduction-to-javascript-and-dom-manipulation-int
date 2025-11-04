@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Fundamentals Assignment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript Fundamentals Assignment</h1>
+        </header>
+
+        <!-- Part 1: Basic JavaScript Demo -->
+        <section id="part1">
+            <h2>Part 1: JavaScript Basics</h2>
+            <div class="demo-area">
+                <label for="userAge">Enter your age:</label>
+                <input type="number" id="userAge" placeholder="Enter age">
+                <button onclick="checkAge()">Check Eligibility</button>
+                <p id="ageResult"></p>
+            </div>
+        </section>
+
+        <!-- Part 2: Functions Demo -->
+        <section id="part2">
+            <h2>Part 2: JavaScript Functions</h2>
+            <div class="demo-area">
+                <div class="input-group">
+                    <label for="num1">Number 1:</label>
+                    <input type="number" id="num1" value="10">
+                    
+                    <label for="num2">Number 2:</label>
+                    <input type="number" id="num2" value="5">
+                </div>
+                <div class="button-group">
+                    <button onclick="calculate('add')">Add</button>
+                    <button onclick="calculate('multiply')">Multiply</button>
+                    <button onclick="calculate('power')">Power</button>
+                </div>
+                <p id="functionResult"></p>
+            </div>
+        </section>
+
+        <!-- Part 3: Loops Demo -->
+        <section id="part3">
+            <h2>Part 3: JavaScript Loops</h2>
+            <div class="demo-area">
+                <button onclick="generateMultiplicationTable()">Generate Multiplication Table</button>
+                <button onclick="processShoppingCart()">Process Shopping Cart</button>
+                <div id="loopResults"></div>
+            </div>
+        </section>
+
+        <!-- Part 4: DOM Manipulation Demo -->
+        <section id="part4">
+            <h2>Part 4: DOM Manipulation</h2>
+            <div class="demo-area">
+                <button id="themeToggle">Toggle Dark Mode</button>
+                <button id="addItem">Add List Item</button>
+                <button id="changeText">Change Header Text</button>
+                
+                <ul id="dynamicList">
+                    <li>Initial item 1</li>
+                    <li>Initial item 2</li>
+                </ul>
+                
+                <div id="interactionArea">
+                    <p>Click the buttons to see DOM manipulation in action!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
